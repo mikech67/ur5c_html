@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="authoring-tool" content="Adobe_Animate_CC">
+	<title>ur5c</title>
+    <link href="css/style.css" rel="stylesheet" type="text/css">
+	<script src="js/createjs-2015.11.26.min.js"></script>
+	<script src="js/angular.min.js" type="text/javascript"></script>
+	<script src="content.js?1588173120487"></script>
+	<script src="dev.js"></script>
+
+</head>
+
+<body onload="init();"  ng-app="myApp" ng-controller="myCtrl">
+
+	<div id="animation_container" >
+
+		<canvas id="canvas" width="820" height="550"  role="definition">
+
+			<header>
+
+				<h1 id="header" tabindex=0 onfocus="drawFrame(event)" onblur="clearFrame(event)">
+					<p>Blood Pressure</p>
+				</h1>
+
+			</header>
+
+			<main>
+
+				<nav>
+					<ul id="dragFocus" role="menubar" tabindex=-1 onfocus="drawFrame(event)" onblur="clearFrame(event)"
+						ng-focus="focused = true" ng-keydown=" dragGroup($event)">
+
+						<li role="menuitem" tabindex="-1" class="drag" ng-repeat="x in dragArr" id="{{x.id}}"
+							onfocus="drawFrame(event)" onblur="clearFrame(event)" ng-keydown="dragDrop($event)">
+							<a>{{x.alt}}</a>
+						</li>
+
+						<li role="menuitem" class="place" tabindex="-1" ng-repeat="y in places" id="{{y.id}}"
+							onfocus="drawFrame()" onblur="clearFrame(event)" ng-keydown="dragDrop($event)">
+							<a>{{y.alt}}</a>
+						</li>
+					</ul>
+				</nav>
+
+				<ul id="hints_group" role="menubar" tabindex=0 onfocus="drawFrame(event)" onblur="clearFrame(event)"
+					ng-focus="focused = true" ng-keydown="hintsGroup()">
+					<li role="menuitem" class="hint" tabindex="-1" ng-repeat="x in hintsArr" id="{{x.id}}"
+						onfocus="drawFrame()" onblur="clearFrame(event)" ng-keydown="hintOpen($event)">
+						<a>{{x.alt}}</a>
+					</li>
+
+					<li role="menuitem" tabindex="-1" id="hintClose" onfocus="drawCloseFrame()"
+						onblur="clearCloseFrame(event)" ng-keydown="closeHintA($event)">
+						<a>close Buton</a>
+					</li>
+
+				</ul>
+
+				<button id="keepF" tabindex="0" onfocus="drawFrame(event)" onblur="clearFrame(event)"
+					ng-click="switchFunc()">Retain correct components after submission.
+				</button>
+
+				<ul id="navigationF" role="menubar" tabindex=0 onfocus="drawFrame(event)" onblur="clearFrame(event)"
+					ng-keydown="navGroup($event)">
+
+					<li role="menuitem" id="resetF" tabindex="-1" onfocus="drawFrame(event)" onblur="clearFrame(event)"
+						ng-keydown="resetFunc($event)">
+						<a>Reset button</a>
+					</li>
+					<li role="menuitem" id="showF" tabindex="-1" onfocus="drawFrame(event)" onblur="clearFrame(event)"
+						ng-keydown="showAllFunc($event)">
+						<a>Show All button</a>
+					</li>
+					<li role="menuitem" id="printF" tabindex="-1" onfocus="drawFrame(event)" onblur="clearFrame(event)"
+						ng-keydown="printFunc($event)">
+						<a>Print button</a>
+					</li>
+
+					<li role="menuitem" id="submitF" tabindex="-1" onfocus="drawFrame(event)" onblur="clearFrame(event)"
+						ng-keydown="submitFunc($event)">
+						<a>Submit button</a>
+					</li>
+				</ul>
+
+
+				<mark id="showFrame" tabindex=-1 onfocus="drawFrame(event)" onblur="clearFrame(event)"></mark>
+
+			</main>
+
+			<footer>
+
+				<p id="instraction" tabindex=0 onfocus="drawFrame(event)" onblur="clearFrame(event)">
+					Complete the Concept Map by dragging the components to the appropriate boxes.
+					For a visual hint, click on the question mark.
+				</p>
+
+				<p id="tabInstr" tabindex=0 onfocus="drawFrame(event)" onblur="clearFrame(event)">
+					Keyboard: Use Tab/Shift + Tab to navigate the list. Use Enter to select. Use arrows Up/Down for
+					Previous/Next.
+				</p>
+
+			</footer>
+
+		</canvas>
+
+		<div id="dom_overlay_container" >
+		</div>
+	</div>
+	<div id='_preload_div_' >
+			<span ></span>	
+			<img src=images/_preloader.gif?1594786476614 alt="Preloading"/>
+		</div>
+</body>
+</html>
